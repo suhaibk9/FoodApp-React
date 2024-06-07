@@ -1,0 +1,352 @@
+/* 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 0 20px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+}
+
+.nav-items > ul {
+    display: flex;
+    list-style-type: none;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: space-between;
+}
+
+.nav-items > ul > li {
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+.res-card{
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+}
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+} */
+/* 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 0 20px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+}
+
+.nav-items > ul {
+    display: flex;
+    list-style-type: none;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: space-between;
+}
+
+.nav-items > ul > li {
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+.res-card {
+    width: 200px; 
+    height: 380px; 
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    
+    padding: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.res-card img {
+
+    width: 100%;
+    
+    min-height: 150px;
+    max-height: 150px;
+}
+.res-card h3, .res-card h4 {
+    margin: 8px 0; 
+    
+}
+.res-name, .res-rating, .res-cuisine, .res-cost {
+    margin: 10px 0; 
+    text-align: left;
+    width: 100%;
+}
+.res-card .cuisine {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.res-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.res-card:hover{
+    border: 2px solid black;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+} */
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+    padding: 0 20px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    margin:0px 10px;
+}
+.logo {
+    width: 150px;
+    height: 150px;
+}
+
+.nav-items > ul {
+    display: flex;
+    list-style-type: none;
+    flex-direction: row;
+    align-items: center; 
+    justify-content: space-between;
+}
+
+.nav-items > ul > li {
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+.res-card {
+    width: 250px; 
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    padding: 10px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    background-color: #f3e5f5;
+}
+
+.res-card img {
+    width: 100%;
+    min-height: 150px;
+    max-height: 150px;
+    object-fit: cover;
+}
+
+.res-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    
+}
+
+.res-info h3, .res-info h4 {
+    margin: 5px 0;
+    text-align: left;
+    width: 100%;
+}
+
+.res-cost {
+    margin-top: auto; /* Push cost to the bottom */
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.res-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the restaurant cards container */
+}
+
+.res-card:hover {
+    border: 2px solid black;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+.highRate{
+    display: flex;
+justify-content: flex-end;
+}
+
+.highRate {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.highRate button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.highRate button:hover {
+    background-color: #e0e0e0;
+    border-color: #aaa;
+}
+
+.highRate button:active {
+    background-color: #ccc;
+    border-color: #888;
+}
+
+.highRate button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.search input {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.search input:focus {
+    border-color: #888;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    outline: none;
+}
+.restaurant-details {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+
+.restaurant-details img {
+  width: 100%;
+  max-width: 400px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.restaurant-details h2 {
+  margin-top: 0;
+}
+
+.restaurant-details p {
+  margin: 5px 0;
+}
+
+.restaurant-details a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.restaurant-details a:hover {
+  background-color: #0056b3;
+}
+
+/* CSS for the modal */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  z-index: 1001;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.details {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.image-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container img {
+  width: 100%;
+  max-width: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1002;
+}
