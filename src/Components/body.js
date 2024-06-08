@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import RestaurantCard from './resturantCard';
 import RestaurantModal from './RestaurantModal';
+import ShimmerCard from './Shimmer';
 import { API_URL } from '../utils/constants';
-
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -10,6 +10,7 @@ const Body = () => {
   const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,8 +24,10 @@ const Body = () => {
           data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
         setRestaurants(restaurantsData);
         setAllRestaurants(restaurantsData);
+        setLoading(false); // Data is loaded
       } catch (error) {
         console.error('Error fetching data:', error);
+        setLoading(false); // Stop loading on error
       }
     };
 
@@ -92,15 +95,19 @@ const Body = () => {
         <button onClick={handleDescRating}>Sort By Rating (High To Low)</button>
         <button onClick={handleAscRating}>Sort By Rating (Low to High)</button>
       </div>
-      <div className="res-container">
-        {restaurants.map((restaurant) => (
-          <RestaurantCard
-            key={restaurant.info.id}
-            restaurant={restaurant.info}
-            onClick={handleRestaurantClick}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <div className="shimmer-wrapper">{Array(8).fill(<ShimmerCard />)}</div>
+      ) : (
+        <div className="res-container">
+          {restaurants.map((restaurant) => (
+            <RestaurantCard
+              key={restaurant.info.id}
+              restaurant={restaurant.info}
+              onClick={handleRestaurantClick}
+            />
+          ))}
+        </div>
+      )}
       <RestaurantModal
         restaurant={selectedRestaurant}
         isOpen={modalIsOpen}
