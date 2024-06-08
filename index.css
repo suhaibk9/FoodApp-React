@@ -350,3 +350,62 @@ justify-content: flex-end;
   cursor: pointer;
   z-index: 1002;
 }
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .nav-items > ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-items > ul > li {
+        font-size: 18px;
+        margin: 5px 0;
+    }
+
+    .res-card {
+        width: 100%;
+        margin: 10px;
+    }
+
+    .modal {
+        width: 90%;
+    }
+
+    .modal-content {
+        flex-direction: column;
+    }
+
+    .details, .image-container {
+        padding: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 10px;
+        margin: 0;
+    }
+
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .nav-items > ul > li {
+        font-size: 16px;
+    }
+
+    .search input {
+        width: 100%;
+    }
+}
