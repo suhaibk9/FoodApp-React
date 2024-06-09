@@ -1,73 +1,17 @@
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-// import { CDN_URL } from '../utils/constants';
-
-// const RestaurantDetails = () => {
-//   let nameOfResturant = '';
-//   const { id } = useParams();
-//   const [restaurant, setRestaurant] = useState(null);
-
-//   useEffect(() => {
-//     const fetchRestaurantDetails = async () => {
-//       try {
-//         const response = await fetch(
-//           `https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId=${id}&submitAction=ENTER`
-//         );
-
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-//         const data = await response.json();
-//         nameOfResturant = data.data.cards[0].card.card.text;
-//         let restData = [];
-//         let ar = [];
-//         data.data.cards[5].groupedCard.cardGroupMap.REGULAR.cards.map(
-//           (card) => {
-//             if (card.card.card.hasOwnProperty('itemCards')) {
-//               restData.push(card.card.card.itemCards);
-//             }
-//           }
-//         );
-//         restData = restData.flat();
-//         console.log(restData);
-//         restData = restData.map((item) => {
-//           console.log(item.card.info);
-//           const obj = {
-//             name: item.card.info.name,
-//             price: item.card.info.price / 100,
-//             description: item.card.info.description,
-//             category: item.card.info.category,
-//             imageUrl: `${CDN_URL}${item.card.info.imageId}`,
-//           };
-//           ar.push(obj);
-//         });
-//         console.log(ar);
-//         setRestaurant(ar);
-//         setLoading(false);
-//       } catch (error) {
-//         console.error('Error fetching restaurant details:', error);
-//         setError(error);
-//         setLoading(false);
-//       }
-//     };
-//     fetchRestaurantDetails();
-//   }, [id]);
-
-//   return <h1>Hello</h1>;
-// };
-// export default RestaurantDetails;
-//Full COde STart
-
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CDN_URL } from '../utils/constants';
 import ShimmerCard from './Shimmer';
+
 const RestaurantDetails = () => {
   const { id } = useParams();
   const [restaurantName, setRestaurantName] = useState('');
   const [restaurantMenu, setRestaurantMenu] = useState([]);
+  const [filteredMenu, setFilteredMenu] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [sortOption, setSortOption] = useState('');
+  const [excludeOutOfStock, setExcludeOutOfStock] = useState(false);
 
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
@@ -95,13 +39,14 @@ const RestaurantDetails = () => {
 
         const menuItems = restData.map((item) => ({
           name: item.card.info.name,
-          price: item.card.info.price / 100,
+          price: item.card.info.price ? item.card.info.price / 100 : NaN,
           description: item.card.info.description,
           category: item.card.info.category,
           imageUrl: `${CDN_URL}${item.card.info.imageId}`,
         }));
 
         setRestaurantMenu(menuItems);
+        setFilteredMenu(menuItems);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching restaurant details:', error);
@@ -113,23 +58,100 @@ const RestaurantDetails = () => {
     fetchRestaurantDetails();
   }, [id]);
 
+  const handleSort = (option, menu) => {
+    let sortedMenu = [...menu];
+    if (option === 'price-asc') {
+      sortedMenu.sort((a, b) =>
+        isNaN(a.price) ? 1 : isNaN(b.price) ? -1 : a.price - b.price
+      );
+    } else if (option === 'price-desc') {
+      sortedMenu.sort((a, b) =>
+        isNaN(a.price) ? -1 : isNaN(b.price) ? 1 : b.price - a.price
+      );
+    } else if (option === 'name-asc') {
+      sortedMenu.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (option === 'name-desc') {
+      sortedMenu.sort((a, b) => b.name.localeCompare(a.name));
+    }
+    return sortedMenu;
+  };
+
+  const handleSortChange = (event) => {
+    const option = event.target.value;
+    setSortOption(option);
+
+    let updatedMenu = excludeOutOfStock
+      ? restaurantMenu.filter((item) => !isNaN(item.price))
+      : restaurantMenu;
+    updatedMenu = handleSort(option, updatedMenu);
+    setFilteredMenu(updatedMenu);
+  };
+
+  const handleExcludeOutOfStock = (event) => {
+    setExcludeOutOfStock(event.target.checked);
+
+    let updatedMenu = event.target.checked
+      ? restaurantMenu.filter((item) => !isNaN(item.price))
+      : restaurantMenu;
+    updatedMenu = handleSort(sortOption, updatedMenu);
+    setFilteredMenu(updatedMenu);
+  };
+
   if (loading) {
-      return <div className="shimmer-wrapper">
-         {Array.from({ length: 8 }).map((_, index) => (
-           <ShimmerCard key={index} />
-         ))}
-       </div>;
+    return (
+      <div className="shimmer-wrapper">
+        {Array.from({ length: 8 }).map((_, index) => (
+          <ShimmerCard key={index} />
+        ))}
+      </div>
+    );
   }
 
   if (error) {
     return <h1>Error: {error.message}</h1>;
   }
 
+  if (restaurantMenu.length === 0) {
+    return (
+      <div style={styles.container}>
+        <h1 style={styles.restaurantName}>{restaurantName}</h1>
+        <h2>Sorry, Restaurant is closed. Please come again tomorrow.</h2>
+      </div>
+    );
+  }
+
   return (
     <div style={styles.container}>
       <h1 style={styles.restaurantName}>{restaurantName}</h1>
+      <div style={styles.controls}>
+        <div style={styles.sortContainer}>
+          <label htmlFor="sort">Sort by:</label>
+          <select
+            id="sort"
+            value={sortOption}
+            onChange={handleSortChange}
+            style={styles.select}
+          >
+            <option value="">Select</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">Name: A to Z</option>
+            <option value="name-desc">Name: Z to A</option>
+          </select>
+        </div>
+        <div style={styles.checkboxContainer}>
+          <input
+            type="checkbox"
+            id="excludeOutOfStock"
+            checked={excludeOutOfStock}
+            onChange={handleExcludeOutOfStock}
+            style={styles.checkbox}
+          />
+          <label htmlFor="excludeOutOfStock">Exclude Out Of Stock Items</label>
+        </div>
+      </div>
       <div style={styles.menuContainer}>
-        {restaurantMenu.map((item, index) => {
+        {filteredMenu.map((item, index) => {
           return (
             <div key={index} style={styles.menuItem}>
               <img src={item.imageUrl} alt={item.name} style={styles.image} />
@@ -137,7 +159,10 @@ const RestaurantDetails = () => {
                 <h2 style={styles.name}>{item.name}</h2>
                 <p style={styles.category}>{item.category}</p>
                 <p style={styles.description}>{item.description}</p>
-                <p style={styles.price}>Price: ₹{item.price}</p>
+                <p style={styles.price}>
+                  Price:{' '}
+                  {isNaN(item.price) ? 'Item Out of Stock' : `₹${item.price}`}
+                </p>
               </div>
             </div>
           );
@@ -159,6 +184,30 @@ const styles = {
     color: '#ff6347',
     fontSize: '36px',
     marginBottom: '20px',
+  },
+  controls: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '20px',
+  },
+  sortContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  select: {
+    marginLeft: '10px',
+    padding: '5px',
+    borderRadius: '4px',
+    border: '1px solid #ddd',
+    fontSize: '16px',
+  },
+  checkboxContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  checkbox: {
+    marginRight: '10px',
   },
   menuContainer: {
     display: 'flex',
