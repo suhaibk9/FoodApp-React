@@ -12,6 +12,7 @@ const RestaurantDetails = () => {
   const [error, setError] = useState(null);
   const [sortOption, setSortOption] = useState('');
   const [excludeOutOfStock, setExcludeOutOfStock] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
@@ -79,20 +80,32 @@ const RestaurantDetails = () => {
   const handleSortChange = (event) => {
     const option = event.target.value;
     setSortOption(option);
-
-    let updatedMenu = excludeOutOfStock
-      ? restaurantMenu.filter((item) => !isNaN(item.price))
-      : restaurantMenu;
-    updatedMenu = handleSort(option, updatedMenu);
-    setFilteredMenu(updatedMenu);
+    applyFilters(option, excludeOutOfStock, searchQuery);
   };
 
   const handleExcludeOutOfStock = (event) => {
-    setExcludeOutOfStock(event.target.checked);
+    const exclude = event.target.checked;
+    setExcludeOutOfStock(exclude);
+    applyFilters(sortOption, exclude, searchQuery);
+  };
 
-    let updatedMenu = event.target.checked
+  const handleSearch = (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+    applyFilters(sortOption, excludeOutOfStock, query);
+  };
+
+  const applyFilters = (sortOption, excludeOutOfStock, searchQuery) => {
+    let updatedMenu = excludeOutOfStock
       ? restaurantMenu.filter((item) => !isNaN(item.price))
       : restaurantMenu;
+
+    if (searchQuery) {
+      updatedMenu = updatedMenu.filter((item) =>
+        item.name.toLowerCase().includes(searchQuery)
+      );
+    }
+
     updatedMenu = handleSort(sortOption, updatedMenu);
     setFilteredMenu(updatedMenu);
   };
@@ -123,6 +136,15 @@ const RestaurantDetails = () => {
   return (
     <div style={styles.container}>
       <h1 style={styles.restaurantName}>{restaurantName}</h1>
+      <div style={styles.searchContainer}>
+        <input
+          type="text"
+          placeholder="Search for a dish..."
+          value={searchQuery}
+          onChange={handleSearch}
+          style={styles.searchBox}
+        />
+      </div>
       <div style={styles.controls}>
         <div style={styles.sortContainer}>
           <label htmlFor="sort">Sort by:</label>
@@ -184,6 +206,16 @@ const styles = {
     color: '#ff6347',
     fontSize: '36px',
     marginBottom: '20px',
+  },
+  searchContainer: {
+    marginBottom: '20px',
+  },
+  searchBox: {
+    width: '100%',
+    padding: '8px',
+    borderRadius: '4px',
+    border: '1px solid #ddd',
+    fontSize: '16px',
   },
   controls: {
     display: 'flex',
