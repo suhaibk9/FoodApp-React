@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { CDN_URL } from '../utils/constants';
+import { CDN_URL ,MENU_URL} from '../utils/constants';
 import ShimmerCard from './Shimmer';
 
 const RestaurantDetails = () => {
@@ -17,9 +17,8 @@ const RestaurantDetails = () => {
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
       try {
-        const response = await fetch(
-          `https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9352403&lng=77.624532&restaurantId=${id}&submitAction=ENTER`
-        );
+        
+        const response = await fetch(`${MENU_URL}=${id}&submitAction=ENTER`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
