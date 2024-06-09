@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import RestaurantCard from './resturantCard';
-import RestaurantModal from './RestaurantModal';
 import ShimmerCard from './Shimmer';
 import { API_URL } from '../utils/constants';
-
+import { Link } from 'react-router-dom';
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
-  const [selectedRestaurant, setSelectedRestaurant] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -68,15 +65,6 @@ const Body = () => {
     setRestaurants(sortedRestaurants);
   };
 
-  const handleRestaurantClick = (restaurant) => {
-    setSelectedRestaurant(restaurant);
-    setModalIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
-
   return (
     <div className="body">
       <div className="search">
@@ -96,23 +84,26 @@ const Body = () => {
         <button onClick={handleAscRating}>Sort By Rating (Low to High)</button>
       </div>
       {loading ? (
-        <div className="shimmer-wrapper">{Array(8).fill(<ShimmerCard />)}</div>
-      ) : (
-        <div className="res-container">
-          {restaurants.map((restaurant) => (
-            <RestaurantCard
-              key={restaurant.info.id}
-              restaurant={restaurant.info}
-              onClick={handleRestaurantClick}
-            />
+        <div className="shimmer-wrapper">
+          {Array.from({ length: 8 }).map((_, index) => (
+            <ShimmerCard key={index} />
           ))}
         </div>
+      ) : (
+        <div className="res-container">
+          {restaurants.map((restaurant) => {
+            console.log(restaurant.info.id);
+            return (
+                
+              <RestaurantCard
+                key={restaurant.info.id}
+                restaurant={restaurant.info}
+              />
+              
+            );
+          })}
+        </div>
       )}
-      <RestaurantModal
-        restaurant={selectedRestaurant}
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-      />
     </div>
   );
 };

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { LOGO_URL } from '../utils/constants';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 const Header = () => {
   const [login, setLogin] = useState(false);
   const hanldeLogin = () => {
@@ -13,12 +14,17 @@ const Header = () => {
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact</li>
-          <li>Cart</li>
+          <li href="/">
+            <Link to="/">Home</Link>
+          </li>
           <li>
-            <button onClick={hanldeLogin}>{login ? `Logout` : `Login`}</button>
+            <Link to="/about">About Us</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
+          <li>
+            <Link to="/cart">Cart</Link>
           </li>
         </ul>
       </div>
