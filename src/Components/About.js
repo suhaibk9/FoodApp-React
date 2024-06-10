@@ -1,55 +1,157 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const About = () => {
-  return (
-    <div
-      style={{
-        fontFamily: 'Arial, sans-serif',
-        padding: '20px',
-        lineHeight: '1.6',
-        color: '#333',
-      }}
-    >
-      <h1 style={{ textAlign: 'center', color: '#ff6347' }}>About Us</h1>
-      <p style={{ fontSize: '18px' }}>
-        Welcome to <span style={{ fontWeight: 'bold' }}>FoodApp</span>, your
-        number one source for all things delicious! We are dedicated to giving
-        you the very best of food, with a focus on quality, customer service,
-        and uniqueness.
-      </p>
-      <p style={{ fontSize: '18px' }}>
-        Founded in 2024, <span style={{ fontWeight: 'bold' }}>FoodApp</span> has
-        come a long way from its beginnings in a small kitchen. When we first
-        started out, our passion for providing the best food experience drove us
-        to do intense research and gave us the impetus to turn hard work and
-        inspiration into a booming online food ordering service. We now serve
-        customers all over the city and are thrilled to be a part of the
-        eco-friendly, fair trade wing of the food industry.
-      </p>
-      <p style={{ fontSize: '18px' }}>
-        We believe in delivering not just food, but an experience that brings
-        joy and comfort. Our chefs use the finest ingredients to prepare
-        mouth-watering dishes that will tantalize your taste buds and leave you
-        craving for more. From the freshest salads to the heartiest meals, we
-        have something for everyone.
-      </p>
-      <p style={{ fontSize: '18px' }}>
-        At <span style={{ fontWeight: 'bold' }}>FoodApp</span>, we are committed
-        to maintaining the highest standards of hygiene and safety. We have
-        implemented strict protocols to ensure that every meal you order is
-        prepared and delivered with the utmost care.
-      </p>
-      <p style={{ fontSize: '18px' }}>
-        We hope you enjoy our food as much as we enjoy offering it to you. If
-        you have any questions or comments, please don't hesitate to contact us.
-      </p>
-      <p style={{ fontSize: '18px', textAlign: 'center' }}>
-        Sincerely,
-        <br />
-        <span style={{ fontWeight: 'bold' }}>The FoodApp Team</span>
-      </p>
-    </div>
-  );
+class AboutUs extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userData: null,
+      loading: true,
+      error: null,
+    };
+  }
+
+  componentDidMount() {
+    fetch('https://api.github.com/users/suhaibk9')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        this.setState({ userData: data, loading: false });
+      })
+      .catch((error) => {
+        this.setState({ error, loading: false });
+      });
+  }
+
+  render() {
+    const { userData, loading, error } = this.state;
+
+    if (loading) {
+      return (
+        <div style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</div>
+      );
+    }
+
+    if (error) {
+      return (
+        <div style={{ textAlign: 'center', marginTop: '20px', color: 'red' }}>
+          Error: {error.message}
+        </div>
+      );
+    }
+
+    return (
+      <div style={styles.container}>
+        <h1 style={styles.header}>About Us</h1>
+        <p style={styles.description}>
+          Thank you for checking out this project! If you like what you see,
+          please connect on LinkedIn:
+          <a
+            href="https://www.linkedin.com/in/suhaibk9/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.link}
+          >
+            Suhaib Khan
+          </a>
+        </p>
+        {userData && (
+          <div style={styles.profile}>
+            <img
+              src={userData.avatar_url}
+              alt="Profile"
+              style={styles.avatar}
+            />
+            <div style={styles.profileDetails}>
+              <h2 style={styles.name}>{userData.name}</h2>
+              <p style={styles.bio}>{userData.bio}</p>
+              <p style={styles.location}>
+                <strong>Location:</strong> {userData.location}
+              </p>
+              <p style={styles.company}>
+                <strong>Company:</strong> {userData.company}
+              </p>
+              <p style={styles.repo}>
+                <strong>Public Repositories:</strong> {userData.public_repos}
+              </p>
+              <p style={styles.githubLink}>
+                <a
+                  href={userData.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={styles.link}
+                >
+                  GitHub Profile
+                </a>
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+}
+
+const styles = {
+  container: {
+    textAlign: 'center',
+    padding: '20px',
+    fontFamily: 'Arial, sans-serif',
+  },
+  header: {
+    fontSize: '36px',
+    margin: '20px 0',
+  },
+  description: {
+    fontSize: '18px',
+    margin: '20px 0',
+  },
+  link: {
+    color: '#007bff',
+    textDecoration: 'none',
+    marginLeft: '5px',
+  },
+  profile: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '20px',
+  },
+  avatar: {
+    width: '150px',
+    height: '150px',
+    borderRadius: '50%',
+  },
+  profileDetails: {
+    textAlign: 'left',
+    marginTop: '20px',
+  },
+  name: {
+    fontSize: '24px',
+    margin: '10px 0',
+  },
+  bio: {
+    fontSize: '16px',
+    margin: '10px 0',
+  },
+  location: {
+    fontSize: '16px',
+    margin: '10px 0',
+  },
+  company: {
+    fontSize: '16px',
+    margin: '10px 0',
+  },
+  repo: {
+    fontSize: '16px',
+    margin: '10px 0',
+  },
+  githubLink: {
+    marginTop: '20px',
+  },
 };
 
-export default About;
+export default AboutUs;

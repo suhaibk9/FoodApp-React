@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import RestaurantCard from './resturantCard';
 import ShimmerCard from './Shimmer';
 import { API_URL } from '../utils/constants';
+import useOnlineStatus from '../utils/useOnelineStatus';
 import { Link } from 'react-router-dom';
 const Body = () => {
+  
   const [restaurants, setRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -64,6 +66,17 @@ const Body = () => {
     );
     setRestaurants(sortedRestaurants);
   };
+  const onlineStatus = useOnlineStatus();
+  if (!onlineStatus) {
+    return (
+      <div className="offline-container">
+        <div className="offline-message">
+          <h1>You are Offline</h1>
+          <p>Please check your internet connection.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="body">
@@ -94,12 +107,10 @@ const Body = () => {
           {restaurants.map((restaurant) => {
             console.log(restaurant.info.id);
             return (
-                
               <RestaurantCard
                 key={restaurant.info.id}
                 restaurant={restaurant.info}
               />
-              
             );
           })}
         </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy,Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { useEffect, useState } from 'react';
 import Header from './Components/header';
@@ -9,7 +9,8 @@ import Contact from './Components/Contact';
 import ErrorPage from './Components/ErrorPage';
 import Cart from './Components/Cart';
 import RestaurantDetails from './Components/ResturantDetails';
-
+const Cart = lazy(() => import('./Components/Cart'));
+const About = lazy(() => import('./Components/About'));
 const App = () => {
   return (
     <div className="app">
@@ -30,7 +31,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: '/about',
-        element: <About />,
+        element: <Suspense fallback={<div>Loading...</div>}><About /></Suspense>,
       },
       {
         path: '/contact',
@@ -38,12 +39,12 @@ const appRouter = createBrowserRouter([
       },
       {
         path: '/cart',
-        element: <Cart />,
+        element: <Suspense fallback={<div>Loading...</div>}><Cart /></Suspense>,
       },
       {
-        path:'/resturant/:id',
-        element:<RestaurantDetails/>
-      }
+        path: '/resturant/:id',
+        element: <RestaurantDetails />,
+      },
     ],
     errorElement: <ErrorPage />,
   },
