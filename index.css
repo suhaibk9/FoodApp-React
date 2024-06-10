@@ -1,304 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-ul li a{
-    text-decoration: none;
-    color: black;
-
+ul li a {
+  @apply no-underline text-black;
 }
+
 .offline-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f8d7da;
-  color: #721c24;
+  @apply flex justify-center items-center h-screen bg-red-100 text-red-700;
 }
 
 .offline-message {
-  text-align: center;
-  padding: 20px;
-  border: 1px solid #f5c6cb;
-  background-color: #f8d7da;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  @apply text-center p-5 border border-red-300 bg-red-100 rounded-lg shadow-md;
 }
 
 .offline-message h1 {
-  font-size: 36px;
-  margin-bottom: 10px;
+  @apply text-4xl mb-2;
 }
 
 .offline-message p {
-  font-size: 18px;
-  margin-bottom: 0;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid black;
-    padding: 0 20px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-    margin:0px 10px;
-}
-
-.logo {
-    width: 150px;
-    height: 150px;
-}
-
-.nav-items > ul {
-    display: flex;
-    list-style-type: none;
-    flex-direction: row;
-    align-items: center; 
-    justify-content: space-between;
-}
-
-.nav-items > ul > li {
-    font-size: 24px;
-    margin: 0 10px;
-}
-
-.res-card {
-    width: 250px; 
-    height:350px;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center items horizontally */
-    padding: 10px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-    margin: 20px;
-    background-color: #f3e5f5;
-}
-
-.res-card img {
-    width: 100%;
-    min-height: 150px;
-    max-height: 150px;
-    object-fit: cover;
-}
-
-.res-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    
-}
-
-.res-info h3, .res-info h4 {
-    margin: 5px 0;
-    text-align: left;
-    width: 100%;
-}
-
-.res-cost {
-    margin-top: auto; /* Push cost to the bottom */
-}
-
-.search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-}
-
-.res-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* Center the restaurant cards container */
-}
-
-.res-card:hover {
-    border: 2px solid black;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
-}
-.highRate{
-    display: flex;
-justify-content: flex-end;
-}
-
-.highRate {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.highRate button {
-    margin-right: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #ffffff;
-    color: #333;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.highRate button:hover {
-    background-color: #e0e0e0;
-    border-color: #aaa;
-}
-
-.highRate button:active {
-    background-color: #ccc;
-    border-color: #888;
-}
-
-.highRate button:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.search input {
-    padding: 10px 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.search input:focus {
-    border-color: #888;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    outline: none;
-}
-.restaurant-details {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 20px;
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-}
-
-.restaurant-details img {
-  width: 100%;
-  max-width: 400px;
-  object-fit: cover;
-  margin-bottom: 20px;
-}
-
-.restaurant-details h2 {
-  margin-top: 0;
-}
-
-.restaurant-details p {
-  margin: 5px 0;
-}
-
-.restaurant-details a {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 5px;
-}
-
-.restaurant-details a:hover {
-  background-color: #0056b3;
-}
-
-/* CSS for the modal */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-  z-index: 1000;
-}
-
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  width: 80%;
-  max-width: 800px;
-  display: flex;
-  flex-direction: row;
-  z-index: 1001;
-}
-
-.modal-content {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.details {
-  flex: 1;
-  padding-right: 20px;
-}
-
-.image-container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image-container img {
-  width: 100%;
-  max-width: 400px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 1002;
+  @apply text-lg mb-0;
 }
 
 /* Shimmer Effect */
-.shimmer-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 20px;
-}
-
 .shimmer-card {
-  width: 250px;
-  height: 300px;
-  margin: 20px;
-  background-color: #f3f3f3;
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
+  @apply w-64 h-72 m-5 bg-gray-200 relative overflow-hidden rounded-lg;
 }
 
 .shimmer-card::after {
   content: '';
-  position: absolute;
-  top: 0;
-  left: -150px;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    #f3f3f3 0%,
-    #e0e0e0 50%,
-    #f3f3f3 100%
-  );
+  @apply absolute top-0 left-0 w-full h-full bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200;
   animation: shimmer 1.5s infinite;
 }
 
@@ -310,63 +41,3 @@ justify-content: flex-end;
     transform: translateX(100%);
   }
 }
-
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .logo {
-        width: 100px;
-        height: 100px;
-    }
-
-    .nav-items > ul {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .nav-items > ul > li {
-        font-size: 18px;
-        margin: 5px 0;
-    }
-
-    .res-card {
-        width: 100%;
-        margin: 10px;
-    }
-
-    .modal {
-        width: 90%;
-    }
-
-    .modal-content {
-        flex-direction: column;
-    }
-
-    .details, .image-container {
-        padding: 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .header {
-        padding: 10px;
-        margin: 0;
-    }
-
-    .logo {
-        width: 80px;
-        height: 80px;
-    }
-
-    .nav-items > ul > li {
-        font-size: 16px;
-    }
-
-    .search input {
-        width: 100%;
-    }
-}
-
