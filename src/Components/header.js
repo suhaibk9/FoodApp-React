@@ -90,38 +90,56 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-between items-center border border-black p-4 shadow-lg m-2">
-      <div className="flex items-center">
-        <Link to="/">
-          <img className="w-36 h-36" src={LOGO_URL} alt="Food Delivery Logo" />
-        </Link>
-      </div>
+    <header className="bg-gradient-to-r from-white to-gray-100 shadow-lg p-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="flex items-center">
+          <Link to="/">
+            <img
+              className="w-36 h-36"
+              src={LOGO_URL}
+              alt="Food Delivery Logo"
+            />
+          </Link>
+        </div>
 
-      <div className="flex">
-        <ul className="flex list-none space-x-4">
-          <li>
-            <Link to="/" className="text-black no-underline text-xl">
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to="/about" className="text-black no-underline text-xl">
-              About Us
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className="text-black no-underline text-xl">
-              Contact Us
-            </Link>
-          </li>
-          <li>
-            <Link to="/cart" className="text-black no-underline text-xl mr-1">
-              Cart
-            </Link>
-          </li>
-        </ul>
+        <nav>
+          <ul className="flex space-x-8 text-lg font-semibold">
+            <li>
+              <Link
+                to="/"
+                className="text-gray-800 hover:text-purple-500 transition duration-300"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                className="text-gray-800 hover:text-purple-500 transition duration-300"
+              >
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                className="text-gray-800 hover:text-purple-500 transition duration-300"
+              >
+                Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/cart"
+                className="text-gray-800 hover:text-purple-500 transition duration-300"
+              >
+                Cart
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
-    </div>
+    </header>
   );
 };
 

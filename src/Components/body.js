@@ -5,7 +5,7 @@
 // import useOnlineStatus from '../utils/useOnelineStatus';
 // import { Link } from 'react-router-dom';
 // const Body = () => {
-  
+
 //   const [restaurants, setRestaurants] = useState([]);
 //   const [allRestaurants, setAllRestaurants] = useState([]);
 //   const [searchQuery, setSearchQuery] = useState('');
@@ -125,6 +125,7 @@ import RestaurantCard from './resturantCard';
 import ShimmerCard from './Shimmer';
 import { API_URL } from '../utils/constants';
 import useOnlineStatus from '../utils/useOnelineStatus';
+import { withVegLabel } from './resturantCard';
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -132,6 +133,7 @@ const Body = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [selectedSort, setSelectedSort] = useState('popularity');
+  const Veg = withVegLabel(RestaurantCard);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -200,8 +202,8 @@ const Body = () => {
   }
 
   return (
-    <div className="p-4 bg-blue-200">
-      <div className="flex justify-center items-center my-5">
+    <div className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 min-h-screen">
+      <div className="flex justify-center items-center my-5 space-x-4">
         <input
           type="text"
           placeholder="Search Restaurants..."
@@ -212,7 +214,7 @@ const Body = () => {
         <select
           value={selectedSort}
           onChange={handleSortChange}
-          className="ml-4 p-2 text-lg border border-gray-300 rounded-lg bg-white text-gray-800 cursor-pointer transition duration-300 ease-in-out hover:bg-gray-200 hover:border-gray-400 active:bg-gray-300 active:border-gray-500 focus:outline-none focus:shadow-outline"
+          className="p-2 text-lg border border-gray-300 rounded-lg bg-white text-gray-800 cursor-pointer transition duration-300 ease-in-out hover:bg-gray-200 hover:border-gray-400 active:bg-gray-300 active:border-gray-500 focus:outline-none focus:shadow-outline"
         >
           <option value="popularity">Sort By Popularity</option>
           <option value="highRate">High Rated (Rating Higher Than 4.0)</option>
@@ -229,13 +231,18 @@ const Body = () => {
       ) : (
         <div className="flex flex-wrap justify-center">
           {restaurants.map((restaurant) => {
-            console.log(restaurant.info.id);
-            return (
-              <RestaurantCard
-                key={restaurant.info.id}
-                restaurant={restaurant.info}
-              />
-            );
+            if (restaurant.info.hasOwnProperty('veg')) {
+              return (
+                <Veg key={restaurant.info.id} restaurant={restaurant.info} />
+              );
+            } else {
+              return (
+                <RestaurantCard
+                  key={restaurant.info.id}
+                  restaurant={restaurant.info}
+                />
+              );
+            }
           })}
         </div>
       )}

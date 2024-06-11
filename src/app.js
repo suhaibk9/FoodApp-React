@@ -1,7 +1,7 @@
 import React, { lazy,Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { useEffect, useState } from 'react';
-import Header from './Components/header';
+import Header from './Components/Header';
 import Body from './Components/body';
 import About from './Components/About';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
