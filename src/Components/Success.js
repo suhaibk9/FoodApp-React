@@ -1,17 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Confetti from 'react-confetti';
+import useWindowSize from 'react-use/lib/useWindowSize';
 
 const Success = () => {
   const orderSummary = useSelector((state) => state.cart.orderSummary);
   const navigate = useNavigate();
+  const { width, height } = useWindowSize();
+  const [isConfettiRunning, setIsConfettiRunning] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsConfettiRunning(false);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   if (!orderSummary) {
-    return <div>No order summary found. Please place an order first.</div>;
+    return (
+      <div className="min-h-screen bg-gradient-to-r from-blue-50 to-purple-50 flex items-center justify-center">
+        <div className="bg-gradient-to-r from-white to-gray-100 p-10 rounded-lg shadow-lg max-w-2xl w-full text-center">
+          <h1 className="text-red-500 text-4xl font-bold mb-5">Oops!</h1>
+          <p className="text-lg mb-4">
+            No order summary found. Please place an order first.
+          </p>
+          <button
+            onClick={() => navigate('/')}
+            className="px-5 py-3 bg-orange-500 text-white rounded-lg font-semibold mt-5 hover:bg-orange-600 transition duration-300"
+          >
+            Go to Home
+          </button>
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-purple-50 flex items-center justify-center">
+      {isConfettiRunning && <Confetti width={width} height={height} />}
       <div className="bg-gradient-to-r from-white to-gray-100 p-10 rounded-lg shadow-lg max-w-2xl w-full text-center">
         <h1 className="text-orange-500 text-4xl font-bold mb-5">
           Thank You for Your Order!

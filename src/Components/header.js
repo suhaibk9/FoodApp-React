@@ -11,18 +11,18 @@ const Header = () => {
   const onlineStatus = useOnlineStatus(); // Use the custom hook
 
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
-console.log("totalQuantity",totalQuantity)
+  console.log('totalQuantity', totalQuantity);
   const handleLogin = () => {
     setLogin(!login);
   };
 
   return (
-    <header className="bg-gradient-to-r from-white to-gray-100 shadow-lg p-4">
+    <header className="bg-gradient-to-r from-white to-gray-100 shadow-lg p-2">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/">
             <img
-              className="w-36 h-36"
+              className="w-20 h-20"
               src={LOGO_URL}
               alt="Food Delivery Logo"
             />
