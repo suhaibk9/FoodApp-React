@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import UserContext from '../utils/UserContext';
 class AboutUs extends Component {
   constructor(props) {
     super(props);
@@ -45,6 +45,7 @@ class AboutUs extends Component {
 
     return (
       <div style={styles.container}>
+       
         <h1 style={styles.header}>About Us</h1>
         <p style={styles.description}>
           Thank you for checking out this project! If you like what you see,

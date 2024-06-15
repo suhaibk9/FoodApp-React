@@ -128,6 +128,8 @@ import useOnlineStatus from '../utils/useOnelineStatus';
 import { withVegLabel } from './resturantCard';
 
 const Body = () => {
+
+
   const [restaurants, setRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
