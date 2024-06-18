@@ -6,8 +6,6 @@ import useOnlineStatus from '../utils/useOnelineStatus';
 import { withVegLabel } from './resturantCard';
 
 const Body = () => {
-
-
   const [restaurants, setRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -27,10 +25,9 @@ const Body = () => {
           data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
         setRestaurants(restaurantsData);
         setAllRestaurants(restaurantsData);
-        setLoading(false); // Data is loaded
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching data:', error);
-        setLoading(false); // Stop loading on error
+        setLoading(false);
       }
     };
 
@@ -116,7 +113,6 @@ const Body = () => {
       ) : (
         <div className="flex flex-wrap justify-center">
           {restaurants.map((restaurant) => {
-            console.log('restaurant', restaurant.info);
             if (restaurant.info.hasOwnProperty('veg')) {
               return (
                 <Veg key={restaurant.info.id} restaurant={restaurant.info} />

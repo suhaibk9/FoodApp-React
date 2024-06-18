@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import { LOGO_URL } from '../utils/constants';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnelineStatus';
-import { useContext } from 'react';
-import UserContext from '../utils/UserContext';
 import { useSelector } from 'react-redux';
 
 const Header = () => {
   const [login, setLogin] = useState(false);
-  const onlineStatus = useOnlineStatus(); // Use the custom hook
-
+  const onlineStatus = useOnlineStatus();
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
-  console.log('totalQuantity', totalQuantity);
+
   const handleLogin = () => {
     setLogin(!login);
   };

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { CDN_URL } from '../utils/constants';
 import { Link } from 'react-router-dom';
@@ -8,7 +7,7 @@ const RestaurantCard = ({ restaurant }) => {
 
   return (
     <Link
-    data-testid="res-card"
+      data-testid="res-card"
       to={`/resturant/${restaurant.id}`}
       className="no-underline text-inherit"
     >

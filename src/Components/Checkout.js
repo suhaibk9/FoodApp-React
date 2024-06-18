@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCart, setOrderSummary } from '../utils/cartSlice';
@@ -47,7 +46,6 @@ const Checkout = () => {
     dispatch(setOrderSummary(summary));
     localStorage.setItem('orderSummary', JSON.stringify(summary));
 
-    console.log('Redirecting to Stripe', process.env.REACT_APP_STRIPE_LINK);
     window.location.href = process.env.REACT_APP_STRIPE_LINK;
   };
 

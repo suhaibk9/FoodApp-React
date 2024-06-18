@@ -3,7 +3,7 @@ import { useRouteError } from 'react-router-dom';
 
 const ErrorPage = () => {
   const error = useRouteError();
-  console.log('error', error);
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-purple-50 flex flex-col justify-center items-center p-5">
       <div className="bg-gradient-to-r from-white to-gray-100 p-10 rounded-lg shadow-lg max-w-xl text-center">

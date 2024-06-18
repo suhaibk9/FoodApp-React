@@ -34,13 +34,7 @@ const RestaurantDetails = () => {
     fullMenuData,
     resturantDetails,
   } = useResturantMenu(id);
-  console.log("Set Filtered Menu", setFilteredMenu);
-  console.log("Error", error);
-  console.log("Loading", loading)
-  console.log("Resturant Name", restaurantName);
-  console.log('Filtered Menu', filteredMenu);
-  console.log('Full Menu Data', fullMenuData);
-  console.log('Resturant Details', resturantDetails);
+
   useEffect(() => {
     applyFilters(excludeOutOfStock);
   }, [fullMenuData, excludeOutOfStock]);

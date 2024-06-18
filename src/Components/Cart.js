@@ -5,12 +5,6 @@ import {
   incrementQuantity,
   decrementQuantity,
 } from '../utils/cartSlice';
-
-
-
-
-
-
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
