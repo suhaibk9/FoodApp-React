@@ -113,6 +113,7 @@ import PaymentFailed from './Components/PaymentFailed';
 import UserContext from './utils/UserContext';
 import RestaurantDetails from './Components/ResturantDetails';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import appStore from './utils/appStore';
 
 const App = () => {
