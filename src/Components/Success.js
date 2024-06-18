@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +19,9 @@ const Success = () => {
       dispatch(setOrderSummary(JSON.parse(savedSummary)));
     }
     dispatch(clearCart());
-
+    setTimeout(() => {
+      localStorage.removeItem('orderSummary');
+    }, 1000);
     setIsLoading(false);
 
     const timer = setTimeout(() => {
