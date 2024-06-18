@@ -4,18 +4,22 @@
 // import Header from './Components/header';
 // import Body from './Components/body';
 // import About from './Components/About';
-// import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 // import Contact from './Components/Contact';
 // import ErrorPage from './Components/ErrorPage';
 // import Cart from './Components/Cart';
-// import RestaurantDetails from './Components/ResturantDetails';
-// import UserContext from './utils/UserContext';
-// import { useContext } from 'react';
-// import { Provider } from 'react-redux';
 // import appStore from './utils/appStore';
 // import Checkout from './Components/Checkout';
 // import Success from './Components/Success';
 // import PaymentFailed from './Components/PaymentFailed';
+// import UserContext from './utils/UserContext';
+// import RestaurantDetails from './Components/ResturantDetails';
+// import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+
+
+
+// import { useContext } from 'react';
+// import { Provider } from 'react-redux';
+
 // // const Cart = lazy(() => import('./Components/Cart'));
 // // const About = lazy(() => import('./Components/About'));
 // const App = () => {
@@ -96,17 +100,18 @@
 // //https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_L
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import Header from './Components/Header';
-import Body from './Components/Body';
+import Header from './Components/header';
+import Body from './Components/body';
 import About from './Components/About';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Contact from './Components/Contact';
 import ErrorPage from './Components/ErrorPage';
 import Cart from './Components/Cart';
-import RestaurantDetails from './Components/RestaurantDetails';
+import appStore from './utils/appStore';
 import Checkout from './Components/Checkout';
 import Success from './Components/Success';
 import PaymentFailed from './Components/PaymentFailed';
+import UserContext from './utils/UserContext';
+import RestaurantDetails from './Components/ResturantDetails';
 import { Provider } from 'react-redux';
 import appStore from './utils/appStore';
 
