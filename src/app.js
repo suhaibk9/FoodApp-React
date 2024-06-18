@@ -71,17 +71,21 @@ const appRouter = createBrowserRouter([
         element: <RestaurantDetails />,
       },
       {
-        path:'/checkout',
-        element:<Checkout/>
+        path: '/checkout',
+        element: <Checkout />,
       },
       {
-        path:'/success',
-        element:<Success/>
+        path: '/success',
+        element: <Success />,
       },
       {
-        path:'/payement-failed',
-        element:<PaymentFailed/>
-      }
+        path: '/payement-failed',
+        element: <PaymentFailed />,
+      },
+      {
+        path: '*', // Matches any unmatched URL
+        element: <App />, // Render the main app component
+      },
     ],
     errorElement: <ErrorPage />,
   },
