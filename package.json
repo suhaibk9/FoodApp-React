@@ -1,7 +1,9 @@
+
 {
-  "name": "swiggy",
+  "name": "my-react-app",
   "version": "1.0.0",
   "description": "",
+  "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
