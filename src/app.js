@@ -86,10 +86,7 @@ const appRouter = createBrowserRouter([
         path: '/payement-failed',
         element: <PaymentFailed />,
       },
-      {
-        path: '*', // Matches any unmatched URL
-        element: <App />, // Render the main app component
-      },
+      
     ],
     errorElement: <ErrorPage />,
   },
