@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import appStore from './utils/appStore';
 import Checkout from './Components/Checkout';
 import Success from './Components/Success';
+import PaymentFailed from './Components/PaymentFailed';
 // const Cart = lazy(() => import('./Components/Cart'));
 // const About = lazy(() => import('./Components/About'));
 const App = () => {
@@ -76,6 +77,10 @@ const appRouter = createBrowserRouter([
       {
         path:'/success',
         element:<Success/>
+      },
+      {
+        path:'/payement-failed',
+        element:<PaymentFailed/>
       }
     ],
     errorElement: <ErrorPage />,

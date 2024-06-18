@@ -1,22 +1,49 @@
+
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Confetti from 'react-confetti';
 import useWindowSize from 'react-use/lib/useWindowSize';
+import { clearCart, setOrderSummary } from '../utils/cartSlice';
 
 const Success = () => {
   const orderSummary = useSelector((state) => state.cart.orderSummary);
   const navigate = useNavigate();
   const { width, height } = useWindowSize();
   const [isConfettiRunning, setIsConfettiRunning] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    const savedSummary = localStorage.getItem('orderSummary');
+    if (!orderSummary && savedSummary) {
+      dispatch(setOrderSummary(JSON.parse(savedSummary)));
+    }
+    dispatch(clearCart());
+
+    setIsLoading(false);
+
     const timer = setTimeout(() => {
       setIsConfettiRunning(false);
     }, 10000);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [orderSummary, dispatch]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-r from-blue-50 to-purple-50 flex items-center justify-center">
+        <div className="bg-gradient-to-r from-white to-gray-100 p-10 rounded-lg shadow-lg max-w-2xl w-full text-center">
+          <h1 className="text-orange-500 text-4xl font-bold mb-5">
+            Loading...
+          </h1>
+          <p className="text-lg mb-4">
+            Retrieving your order summary. Please wait...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   if (!orderSummary) {
     return (

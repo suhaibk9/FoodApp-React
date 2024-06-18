@@ -1,0 +1,244 @@
+{
+  "loading": false,
+  "error": null,
+  "restaurantName": "Pasta Street",
+  "filteredMenu": [
+    {
+      "title": "Non-Veg",
+      "itemCards": [
+        {
+          "card": {
+            "info": {
+              "id": "22117209",
+              "name": "Diced Chicken Risotto Alla Crema",
+              "category": "Risotto",
+              "description": "Arborio Rice Well Cooked In Our Much Loved White Creamy Sauce With Green Peppers And Mushroom, Topped With Parmesan.",
+              "imageId": "4f980ecace68326f6f36c01e0e1e4232",
+              "inStock": 1,
+              "price": 62500,
+              "itemAttribute": {
+                "vegClassifier": "NONVEG"
+              },
+              "ratings": {
+                "aggregatedRating": {}
+              }
+            }
+          }
+        },
+        {
+          "card": {
+            "info": {
+              "id": "22117201",
+              "name": "Diced Chicken Risotto Al Pomodoro",
+              "category": "Risotto",
+              "description": "A Traditional Italian Dish Made With Arborio Rice Blended In Our Rich Spicy Home Made Tomato Sauce, Broccoli, Green Peas, Cheese And Garnished With Parmesan Cheese On Top.",
+              "imageId": "FOOD_CATALOG/IMAGES/CMS/2024/5/6/0dca3eb9-1500-4b1e-8faf-a18caf309ca6_eed464f4-6335-4439-9402-dd2dedaf2895.jpg",
+              "inStock": 1,
+              "price": 62500,
+              "itemAttribute": {
+                "vegClassifier": "NONVEG"
+              },
+              "ratings": {
+                "aggregatedRating": {
+                  "rating": "5.0",
+                  "ratingCount": "4 ratings"
+                }
+              }
+            }
+          }
+        },
+        {
+          "card": {
+            "info": {
+              "id": "113938231",
+              "name": "Creamy Prawn Risotto",
+              "category": "Risotto",
+              "description": "Arborio Rice Well Cooked In Cream & Cajun Spiced Tomato Sauce With Garlic Prawns, Broccoli,Black Olives, Mix Italian Herbs.",
+              "inStock": 1,
+              "price": 74500,
+              "itemAttribute": {
+                "vegClassifier": "NONVEG"
+              },
+              "ratings": {
+                "aggregatedRating": {}
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Veg",
+      "itemCards": [
+        {
+          "card": {
+            "info": {
+              "id": "22117193",
+              "name": "Risotto Alla Crema",
+              "category": "Risotto",
+              "description": "Arborio Rice Well Cooked  Creamy Sauce With Green Peppers And Mushroom, Topped With Parmesan.",
+              "imageId": "a3f88eb445621d091179c8dc1437bedb",
+              "inStock": 1,
+              "isVeg": 1,
+              "price": 59500,
+              "itemAttribute": {
+                "vegClassifier": "VEG"
+              },
+              "ratings": {
+                "aggregatedRating": {
+                  "rating": "4.0",
+                  "ratingCount": "6 ratings"
+                }
+              }
+            }
+          }
+        },
+        {
+          "card": {
+            "info": {
+              "id": "22117181",
+              "name": "Risotto Al Pomodoro",
+              "category": "Risotto",
+              "description": "A Traditional Italian Dish Made With Arborio Rice Blended In Our Rich Spicy Home Made Tomato Sauce, Broccoli, Black Olives, Cheese And Garnished With Parmesan Cheese On Top.",
+              "imageId": "m4iovtupwtdirmkqfnrb",
+              "inStock": 1,
+              "isVeg": 1,
+              "price": 59500,
+              "itemAttribute": {
+                "vegClassifier": "VEG"
+              },
+              "ratings": {
+                "aggregatedRating": {
+                  "rating": "4.8",
+                  "ratingCount": "9 ratings"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "fullMenuData": [
+    {
+      "title": "Non-Veg",
+      "itemCards": [
+        {
+          "card": {
+            "info": {
+              "id": "22117209",
+              "name": "Diced Chicken Risotto Alla Crema",
+              "category": "Risotto",
+              "description": "Arborio Rice Well Cooked In Our Much Loved White Creamy Sauce With Green Peppers And Mushroom, Topped With Parmesan.",
+              "imageId": "4f980ecace68326f6f36c01e0e1e4232",
+              "inStock": 1,
+              "price": 62500,
+              "itemAttribute": {
+                "vegClassifier": "NONVEG"
+              },
+              "ratings": {
+                "aggregatedRating": {}
+              }
+            }
+          }
+        },
+        {
+          "card": {
+            "info": {
+              "id": "22117201",
+              "name": "Diced Chicken Risotto Al Pomodoro",
+              "category": "Risotto",
+              "description": "A Traditional Italian Dish Made With Arborio Rice Blended In Our Rich Spicy Home Made Tomato Sauce, Broccoli, Green Peas, Cheese And Garnished With Parmesan Cheese On Top.",
+              "imageId": "FOOD_CATALOG/IMAGES/CMS/2024/5/6/0dca3eb9-1500-4b1e-8faf-a18caf309ca6_eed464f4-6335-4439-9402-dd2dedaf2895.jpg",
+              "inStock": 1,
+              "price": 62500,
+              "itemAttribute": {
+                "vegClassifier": "NONVEG"
+              },
+              "ratings": {
+                "aggregatedRating": {
+                  "rating": "5.0",
+                  "ratingCount": "4 ratings"
+                }
+              }
+            }
+          }
+        },
+        {
+          "card": {
+            "info": {
+              "id": "113938231",
+              "name": "Creamy Prawn Risotto",
+              "category": "Risotto",
+              "description": "Arborio Rice Well Cooked In Cream & Cajun Spiced Tomato Sauce With Garlic Prawns, Broccoli,Black Olives, Mix Italian Herbs.",
+              "inStock": 1,
+              "price": 74500,
+              "itemAttribute": {
+                "vegClassifier": "NONVEG"
+              },
+              "ratings": {
+                "aggregatedRating": {}
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "title": "Veg",
+      "itemCards": [
+        {
+          "card": {
+            "info": {
+              "id": "22117193",
+              "name": "Risotto Alla Crema",
+              "category": "Risotto",
+              "description": "Arborio Rice Well Cooked  Creamy Sauce With Green Peppers And Mushroom, Topped With Parmesan.",
+              "imageId": "a3f88eb445621d091179c8dc1437bedb",
+              "inStock": 1,
+              "isVeg": 1,
+              "price": 59500,
+              "itemAttribute": {
+                "vegClassifier": "VEG"
+              },
+              "ratings": {
+                "aggregatedRating": {
+                  "rating": "4.0",
+                  "ratingCount": "6 ratings"
+                }
+              }
+            }
+          }
+        },
+        {
+          "card": {
+            "info": {
+              "id": "22117181",
+              "name": "Risotto Al Pomodoro",
+              "category": "Risotto",
+              "description": "A Traditional Italian Dish Made With Arborio Rice Blended In Our Rich Spicy Home Made Tomato Sauce, Broccoli, Black Olives, Cheese And Garnished With Parmesan Cheese On Top.",
+              "imageId": "m4iovtupwtdirmkqfnrb",
+              "inStock": 1,
+              "isVeg": 1,
+              "price": 59500,
+              "itemAttribute": {
+                "vegClassifier": "VEG"
+              },
+              "ratings": {
+                "aggregatedRating": {
+                  "rating": "4.8",
+                  "ratingCount": "9 ratings"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "restaurantDetails": {
+    "name": "Pasta Street",
+    "address": "No 751, 80ft Road, 4th block, Koramangala, Bangalore 560034",
+    "area": "Koramangala"
+  }
+}

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Collapsible from 'react-collapsible';
@@ -18,7 +17,6 @@ import {
   decreaseQuantity,
 } from '../utils/cartSlice';
 
-
 const RestaurantDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -26,7 +24,7 @@ const RestaurantDetails = () => {
   const cartRestaurantName = useSelector((state) => state.cart.restaurantName);
   const [excludeOutOfStock, setExcludeOutOfStock] = useState(false);
   const [expandedSections, setExpandedSections] = useState({});
-  
+
   const {
     loading,
     error,
@@ -36,7 +34,13 @@ const RestaurantDetails = () => {
     fullMenuData,
     resturantDetails,
   } = useResturantMenu(id);
-
+  console.log("Set Filtered Menu", setFilteredMenu);
+  console.log("Error", error);
+  console.log("Loading", loading)
+  console.log("Resturant Name", restaurantName);
+  console.log('Filtered Menu', filteredMenu);
+  console.log('Full Menu Data', fullMenuData);
+  console.log('Resturant Details', resturantDetails);
   useEffect(() => {
     applyFilters(excludeOutOfStock);
   }, [fullMenuData, excludeOutOfStock]);
@@ -106,14 +110,21 @@ const RestaurantDetails = () => {
   };
 
   const handleAddItem = (item) => {
-    if ( cartItems.length > 0 && cartRestaurantName && cartRestaurantName !== restaurantName ) {
-      if ( window.confirm( `You are adding items from ${restaurantName}. Do you want to clear your previous cart from ${cartRestaurantName}?` ) ) {
+    if (
+      cartItems.length > 0 &&
+      cartRestaurantName &&
+      cartRestaurantName !== restaurantName
+    ) {
+      if (
+        window.confirm(
+          `You are adding items from ${restaurantName}. Do you want to clear your previous cart from ${cartRestaurantName}?`
+        )
+      ) {
         dispatch(clearCart());
         dispatch(setRestaurantName(restaurantName));
         dispatch(addItem(item));
       }
-    } 
-    else {
+    } else {
       dispatch(setRestaurantName(restaurantName));
       dispatch(addItem(item));
     }

@@ -1,0 +1,66 @@
+{
+  "id": "77870",
+  "name": "Pasta Street",
+  "cloudinaryImageId": "aecff12704ebe42606524c852f9ab0e4",
+  "locality": "Koramangala",
+  "areaName": "Koramangala",
+  "costForTwo": "₹900 for two",
+  "cuisines": ["Italian", "Pastas", "Pizzas", "Desserts"],
+  "avgRating": 4.5,
+  "parentId": "2872",
+  "avgRatingString": "4.5",
+  "totalRatingsString": "1K+",
+  "sla": {
+    "deliveryTime": 34,
+    "lastMileTravel": 1.9,
+    "serviceability": "SERVICEABLE",
+    "slaString": "30-35 mins",
+    "lastMileTravelString": "1.9 km",
+    "iconType": "ICON_TYPE_EMPTY"
+  },
+  "availability": {
+    "nextCloseTime": "2024-06-17 23:30:00",
+    "opened": true
+  },
+  "badges": {
+    "imageBadges": [
+      {
+        "imageId": "newg.png",
+        "description": "Gourmet"
+      }
+    ]
+  },
+  "isOpen": true,
+  "type": "F",
+  "badgesV2": {
+    "entityBadges": {
+      "imageBased": {
+        "badgeObject": [
+          {
+            "attributes": {
+              "description": "Gourmet",
+              "imageId": "newg.png"
+            }
+          }
+        ]
+      },
+      "textBased": {},
+      "textExtendedBadges": {}
+    }
+  },
+  "aggregatedDiscountInfoV3": {
+    "header": "ITEMS",
+    "subHeader": "AT ₹399"
+  },
+  "differentiatedUi": {
+    "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+    "differentiatedUiMediaDetails": {
+      "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+      "lottie": {},
+      "video": {}
+    }
+  },
+  "reviewsSummary": {},
+  "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+  "restaurantOfferPresentationInfo": {}
+}

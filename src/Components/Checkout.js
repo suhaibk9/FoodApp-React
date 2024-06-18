@@ -1,9 +1,8 @@
+
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCart, setOrderSummary } from '../utils/cartSlice';
 import { useNavigate } from 'react-router-dom';
-
-
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -13,6 +12,7 @@ const Checkout = () => {
   const [number, setNumber] = useState('');
   const [address, setAddress] = useState('');
   const [delivery, setDelivery] = useState(30);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -34,6 +34,9 @@ const Checkout = () => {
       );
       return;
     }
+
+    setIsSubmitting(true);
+
     const summary = {
       restaurantName: cartRestaurantName,
       items: cartItems,
@@ -42,8 +45,10 @@ const Checkout = () => {
       totalCost: totalCost,
     };
     dispatch(setOrderSummary(summary));
-    dispatch(clearCart());
-    navigate('/success');
+    localStorage.setItem('orderSummary', JSON.stringify(summary));
+
+    console.log('Redirecting to Stripe', process.env.REACT_APP_STRIPE_LINK);
+    window.location.href = process.env.REACT_APP_STRIPE_LINK;
   };
 
   return (
@@ -81,6 +86,7 @@ const Checkout = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="block w-full p-2 mt-1 border border-gray-300 rounded"
+                  disabled={isSubmitting}
                 />
               </label>
               <label className="block mb-2">
@@ -90,6 +96,7 @@ const Checkout = () => {
                   value={number}
                   onChange={(e) => setNumber(e.target.value)}
                   className="block w-full p-2 mt-1 border border-gray-300 rounded"
+                  disabled={isSubmitting}
                 />
               </label>
               <label className="block mb-2">
@@ -98,6 +105,7 @@ const Checkout = () => {
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   className="block w-full p-2 mt-1 border border-gray-300 rounded"
+                  disabled={isSubmitting}
                 />
               </label>
               <div className="mb-4">
@@ -108,6 +116,7 @@ const Checkout = () => {
                     checked={delivery === 30}
                     onChange={(e) => setDelivery(Number(e.target.value))}
                     className="mx-1"
+                    disabled={isSubmitting}
                   />
                   Standard Delivery (₹30)
                 </label>
@@ -118,6 +127,7 @@ const Checkout = () => {
                     checked={delivery === 50}
                     onChange={(e) => setDelivery(Number(e.target.value))}
                     className="mx-1"
+                    disabled={isSubmitting}
                   />
                   Express Delivery (₹50)
                 </label>
@@ -130,9 +140,12 @@ const Checkout = () => {
             </div>
             <button
               onClick={handlePlaceOrder}
-              className="block w-full px-5 py-3 bg-orange-500 text-white rounded mt-5"
+              className={`block w-full px-5 py-3 ${
+                isSubmitting ? 'bg-gray-400' : 'bg-orange-500'
+              } text-white rounded mt-5`}
+              disabled={isSubmitting}
             >
-              Place Order
+              {isSubmitting ? 'Placing Order...' : 'Place Order'}
             </button>
           </div>
         )}
