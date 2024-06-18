@@ -1,4 +1,4 @@
-```markdown
+
 # FoodApp - A React-Based Food Ordering Platform
 
 **FoodApp** is a modern, responsive web application built with React that allows users to browse, select, and order food from their favorite restaurants. The app leverages a user-friendly interface and state-of-the-art technologies to deliver a seamless online food ordering experience.
@@ -118,7 +118,7 @@ FoodApp-React/
 The application includes unit tests to ensure code reliability. Run the tests using:
 
 ```sh
-npm test
+npm run test
 ```
 
 ## Contact
@@ -128,4 +128,3 @@ Suhaib Khan - [LinkedIn](https://www.linkedin.com/in/suhaibk9/) - suhaib0900@gma
 Hosted Link on Vercel: [https://foodapp-react-peach.vercel.app/](https://foodapp-react-peach.vercel.app/)
 
 Project Link: [https://github.com/suhaibk9/FoodApp-React](https://github.com/suhaibk9/FoodApp-React)
-```
