@@ -34,7 +34,19 @@ const Checkout = () => {
       );
       return;
     }
+     const proceed = window.confirm(
+      `For testing purposes, please use the following card details:\n
+    Card Number: 4242 4242 4242 4242\n
+    Expiry: 12/34\n
+    CVV: 567\n
+    Feel free to use any random POST CODE, EMAIL and NAME; there's no need to use your real ones. Click OK to proceed with the payment.`
+    );
 
+    // Only proceed if the user confirms
+    if (!proceed) {
+      setIsSubmitting(false);
+      return;
+    }
     setIsSubmitting(true);
     const totalAmountInPaise = parseFloat(totalCost) * 100;
     const summary = {
