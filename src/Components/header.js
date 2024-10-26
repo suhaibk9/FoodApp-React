@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LOGO_URL } from '../utils/constants';
+import AppLogo from '../../assets/AppLogo.jpg';
 import { Link } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnelineStatus';
 import { useSelector } from 'react-redux';
@@ -18,11 +19,7 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/">
-            <img
-              className="w-20 h-20"
-              src={LOGO_URL}
-              alt="Food Delivery Logo"
-            />
+            <img className="w-20 h-20" src={AppLogo} alt="Food Delivery Logo" />
           </Link>
         </div>
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearCart, setOrderSummary } from '../utils/cartSlice';
 import { useNavigate } from 'react-router-dom';
+import { Payment_URL } from '../utils/constants';
 
 const Checkout = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -26,7 +27,7 @@ const Checkout = () => {
 
   const totalCost = (parseFloat(getTotal()) + delivery).toFixed(2);
 
-  const handlePlaceOrder = () => {
+  const handlePlaceOrder = async () => {
     if (!name || !number || !address) {
       alert(
         'We need your Name, Phone Number, and Address for delivery. Please fill in the details.'
@@ -35,7 +36,7 @@ const Checkout = () => {
     }
 
     setIsSubmitting(true);
-
+    const totalAmountInPaise = parseFloat(totalCost) * 100;
     const summary = {
       restaurantName: cartRestaurantName,
       items: cartItems,
@@ -46,7 +47,22 @@ const Checkout = () => {
     dispatch(setOrderSummary(summary));
     localStorage.setItem('orderSummary', JSON.stringify(summary));
 
-    window.location.href = process.env.REACT_APP_STRIPE_LINK;
+    try {
+      const response = await fetch(Payment_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          totalAmount: totalAmountInPaise,
+        }),
+      });
+      const { url } = await response.json();
+      if (url) {
+        window.location.href = url;
+      }
+    } catch (err) {
+      console.error('Error while creating checkout session', err);
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -82,17 +98,30 @@ const Checkout = () => {
                 <input
                   type="text"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    const input = e.target.value;
+                    if (/^[a-zA-Z\s]*$/.test(input)) {
+                      // allows only alphabets and spaces
+                      setName(input);
+                    }
+                  }}
                   className="block w-full p-2 mt-1 border border-gray-300 rounded"
                   disabled={isSubmitting}
                 />
               </label>
+
               <label className="block mb-2">
                 Phone Number:
                 <input
                   type="text"
                   value={number}
-                  onChange={(e) => setNumber(e.target.value)}
+                  onChange={(e) => {
+                    const input = e.target.value;
+                    if (/^\d*$/.test(input)) {
+                      // allows only digits
+                      setNumber(input);
+                    }
+                  }}
                   className="block w-full p-2 mt-1 border border-gray-300 rounded"
                   disabled={isSubmitting}
                 />

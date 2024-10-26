@@ -12,7 +12,7 @@ const useResturantMenu = (id) => {
   useEffect(() => {
     const fetchRestaurantDetails = async () => {
       try {
-        const response = await fetch(`${MENU_URL}=${id}&submitAction=ENTER`);
+        const response = await fetch(`${MENU_URL}/${id}`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
